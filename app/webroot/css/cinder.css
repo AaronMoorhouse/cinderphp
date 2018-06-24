@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css?family=Marcellus');
+
+body {
+	margin: 0;
+	font-family: Helvetica, sans-serif;
+	background-color: #353b48;
+	color: #b4b2b0;
+}
+
+h1, h2, h3, h4 {
+	font-family: 'Marcellus', Helvetica, sans-serif;
+	color: #e84118;
+}
+
+p, ul li {
+	font-size: 14px;
+}
+
+h1 {
+	margin: 0;
+	text-align: center;
+	color: white;
+}
+
+#top {
+	width: 100%;
+	padding: 20px 0;
+	background-color: #2f3640;
+}
+
+#content {
+	width: 98%;
+	padding: 20px 1%;
+	margin-bottom: 48px;
+}
+
+#footer {
+	width: 100%;
+	padding: 15px 0 15px 0;
+	position: fixed;
+	bottom: 0;
+	text-align: center;
+	color: white;
+	background-color: #2f3640;
+}
