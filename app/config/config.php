@@ -1,8 +1,8 @@
 <?php
-define( 'AUTH_HOST', '' );
-define( 'AUTH_USER', '' );
-define( 'AUTH_PASS', '' );
-define( 'AUTH_DATABASE', '' );
+define( 'AUTH_HOST', 'localhost' );
+define( 'AUTH_USER', 'root' );
+define( 'AUTH_PASS', '2@LG5G9c5Ut7yjkWiVSZ&' );
+define( 'AUTH_DATABASE', 'test' );
 
 define('PRETTY_URL', true);
 
