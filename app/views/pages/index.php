@@ -14,6 +14,7 @@
 		<li>Ludleth of Courland</li>
 		<li>Yhorm the Giant</li>
 	</ul>
+	<?php $this->insertTemplate("additionalTemplates/test"); ?>
 	<h3>Where the Lords Come From</h3>
 	<p>
 		The Lords of Cinder are reborn when the Bells of Awakening are rung. Like in Dark Souls, you ring the bells and the gods appear, and from there you can push the cycle further from the Dark Age 

@@ -13,6 +13,15 @@ class Template {
 	public function set($key, $value) {
 		$this->vars[$key] = $value;
 	}
+
+	public function insertTemplate($template) {
+		if(file_exists('app/views/' . $template . '.php')) {
+			require_once('app/views/' . $template . '.php');
+		}
+		else {
+			echo "ERROR: Template '$template' not found.";
+		}
+	}
 	
 	public function render() {
 		extract($this->vars);
