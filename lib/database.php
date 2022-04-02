@@ -2,7 +2,7 @@
 class Database {
 	
 	private $pdo = null;
-	protected $table;
+	protected $table, $json = null;
 	
 	public function connect() {
 		$pdo_options[PDO::ATTR_ERRMODE] = PDO::ERRMODE_EXCEPTION;
@@ -31,6 +31,11 @@ class Database {
 			return null;
 		}
 	}
+
+	public function jsonSelectAll() {
+		$array = json_decode($this->json, true)[$this->table];
+		return $array;
+	}
 	
 	public function select($idName, $id) {
 		try {
@@ -43,6 +48,28 @@ class Database {
 		catch(PDOException $e) {
 			return null;
 		}
+	}
+
+	public function jsonSelect($criteria) {
+		$array = json_decode($this->json, true)[$this->table];
+		$filteredArray = array();
+
+		foreach($array as $element) {
+			$isValid = true;
+
+			foreach($criteria as $key => $value) {
+				if($element[$key] != $value) {
+					$isValid = false;
+					break;
+				}
+			}
+
+			if($isValid) {
+				array_push($filteredArray, $element);
+			}
+		}
+
+		return $filteredArray;
 	}
 	
 	public function runSelectQuery($sql, $params = array()) {
