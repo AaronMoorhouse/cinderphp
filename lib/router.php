@@ -6,7 +6,14 @@ if(isset($_GET['url'])) {
 	if(isset($urlArray[0]) && isset($urlArray[1])) {
 		$controller = $urlArray[0];
 		array_shift($urlArray);
-		$action = $urlArray[0];
+
+		if($urlArray[0] != "") {
+			$action = $urlArray[0];
+		}
+		else {
+			$action = "index";
+		}
+		
 		array_shift($urlArray);
 		
 		$params = $urlArray;
