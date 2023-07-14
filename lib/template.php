@@ -24,6 +24,7 @@ class Template {
 	}
 	
 	public function render() {
+		$this->set('base', ROOT);
 		extract($this->vars);
 		
 		if(file_exists('app/views/' . $this->controller . '/header.php')) {

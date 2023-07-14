@@ -10,7 +10,7 @@ define('PRETTY_URL', true);
 define( 'PREFIX', '' );
 
 //Root directory of site
-define('ROOT', 'localhost/cinderphp');
+define('ROOT', 'http://localhost/cinderphp/');
 
 //True if application is in testing
 define('TESTING', true);
