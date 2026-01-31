@@ -14,8 +14,11 @@ class Template {
 		$this->vars[$key] = $value;
 	}
 
-	public function insertTemplate($template) {
+	public function insertTemplate($template, $vars = array()) {
 		if(file_exists('app/views/' . $template . '.php')) {
+			if(count($vars) > 0) {
+				extract($vars);
+			}
 			require_once('app/views/' . $template . '.php');
 		}
 		else {
