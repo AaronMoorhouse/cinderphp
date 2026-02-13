@@ -7,6 +7,7 @@ class Controller {
 	protected $controller;
 	protected $action;
 	protected $template;
+	protected $render;
 	
 	public function __construct($model, $controller, $action) {
 		if($model) {
@@ -20,12 +21,19 @@ class Controller {
 		$this->controller = $controller;
 		$this->action = $action;
 		$this->template = new Template($controller, $action);
+		$this->render = true;
 	}
 	
 	public function __destruct() {
 		if($_SERVER['REQUEST_METHOD'] !== 'POST') {
-			$this->template->render();
+			if($this->render) {
+				$this->template->render();
+			}
 		}
+	}
+
+	protected function stopRender() {
+		$this->render = false;
 	}
 	
 	public function set($key, $value) {
