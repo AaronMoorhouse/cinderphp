@@ -94,12 +94,15 @@ class Database {
 			$query->execute($params);
 			
 			if($id = $this->pdo->lastInsertId()) {
+				//Query succeeds and returns id of inserted record
 				return $id;
 			}
 			else if($query->rowCount() > 0) {
+				//Query succeeds with 1 or more rows affected by update
 				return 1;
 			}
 			else if($query->rowCount() === 0) {
+				//Return -1 where update query succeeds and no rows affected.
 				return -1;
 			}
 			
