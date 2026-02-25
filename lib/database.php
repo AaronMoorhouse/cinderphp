@@ -138,5 +138,18 @@ class Database {
 			return null;
 		}
 	}
+
+	public function delete($idName, $id) {
+		try {
+			$query = $this->pdo->prepare("DELETE FROM $this->table WHERE $idName = :id");
+			$query->execute(array("id" => $id));
+			$rows = $query->rowCount();
+
+			return $rows;
+		}
+		catch(PDOException $e) {
+			return null;
+		} 
+	}
 }
 ?>
