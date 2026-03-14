@@ -22,6 +22,8 @@ class Controller {
 		$this->action = $action;
 		$this->template = new Template($controller, $action);
 		$this->render = true;
+
+		$this->setBase();
 	}
 	
 	public function __destruct() {
@@ -29,6 +31,15 @@ class Controller {
 			if($this->render) {
 				$this->template->render();
 			}
+		}
+	}
+
+	protected function setBase() {
+		if(strlen(BASE) > 0) {
+			$this->set('base', ROOT . '/' . BASE . '/');
+		}
+		else {
+			$this->set('base', ROOT . '/');
 		}
 	}
 

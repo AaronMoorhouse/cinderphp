@@ -43,6 +43,7 @@ if(!loadController($controller)) {
 	$params = array();
 }
 
+define('ROOT', getBaseUrl());
 call($controller, $action, $params);
 
 function call($controller, $action, $params) {
@@ -58,6 +59,43 @@ function call($controller, $action, $params) {
 		$dispatch = new PagesController(null, "pages", "error");
 		call_user_func_array(array($dispatch, "error"), array());
 	}
+}
+
+function getBaseUrl() {
+	$headers = array(
+		'HTTP_X_TUNNEL_SUBDOMAIN',
+		'HTTP_X_FORWARDED_HOST',
+		'HTTP_X_FORWARDED_SERVER',
+		'HTTP_X_ORIGINAL_HOST',
+		'HTTP_HOST'
+	);
+
+	//Determine host
+	$host = 'localhost';
+
+	foreach($headers as $header) {
+		if(isset($_SERVER[$header])) {
+			if(strpos($_SERVER[$header], 'localhost') === false) {
+				if(strpos($_SERVER[$header], '127.0.0.1') === false) {
+					$host = $_SERVER[$header];
+					break;
+				}
+			}
+		}
+	}
+
+	//Check if HTTPS
+	if(isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && $_SERVER['HTTP_X_FORWARDED_PROTO'] === 'https') {
+		$protocol = 'https://';
+	}
+	else if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') {
+		$protocol = 'https://';
+	}
+	else {
+		$protocol = 'http://';
+	}
+
+	return $protocol . $host;
 }
 
 function loadController($class) {
