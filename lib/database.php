@@ -81,7 +81,7 @@ class Database {
 				return $array;
 			}
 			
-			return null;
+			return array();
 		}
 		catch(PDOException $e) {
 			return null;
